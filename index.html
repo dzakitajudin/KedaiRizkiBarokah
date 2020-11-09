@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Kedai Rizki Barokah</title>
+	<meta name="author" content="Dzaki Tajudin" />
+	<meta name="description" content="kedai rizki barokah." />
+	<meta name="keywords"  content="fullpage,jquery,demo,simple" />
+	<meta name="Resource-type" content="Document" />
+  <link rel="shortcut icon" href="/KedaiRizkiBarokah/favicon.jpeg">
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.css" /> -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <link rel="stylesheet" type="text/css" href="/KedaiRizkiBarokah/css/animation.css" />
+  <style>
+
+    @font-face {
+      font-family: southDjakartaFont;
+      src: url('/KedaiRizkiBarokah/font/south-djakarta-font/SouthDjakarta-WyyGA.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: gilaFont;
+      src: url('/KedaiRizkiBarokah/font/gila-font/Gila-qZBPV.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: printClearlyFont;
+      src: url('/KedaiRizkiBarokah/font/print-clearly-font/PrintBold-J5o.ttf') format('truetype');
+    }
+
+    #btnSoto {
+      font-family: printClearlyFont;
+      font-size: 16px;
+    }
+
+    #btnLele {
+      font-family: printClearlyFont;
+      font-size: 16px;
+    }
+
+    #btnAyam {
+      font-family: printClearlyFont;
+      font-size: 16px;
+    }
+
+    #btnSate {
+      font-family: printClearlyFont;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: printClearlyFont, Helvetica;
+      color: #000;
+      margin: 0;
+    }
+
+    .logo-nav {
+      position: fixed;
+      top: -25px;
+      width: 165px;
+      height: 160px;
+      left: 50px;
+    }
+
+    #scroll-text {
+      opacity: 50%;
+      color: #2e2d2b;
+      position: relative;
+      bottom: 80px;
+      left: 540px;
+    }
+
+    #intro {
+      height: 630px;
+      width: 100%;
+      position: relative;
+    }
+
+    section {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .footer {
+      background-color: #1f1f20;
+      clear: both;
+      position: relative;
+      height: 150px;
+      margin-top: -150px;
+      top: 150px;
+    }
+
+    p.copyright {
+        position: absolute;
+        width: 100%;
+        color: #fff;
+        line-height: 40px;
+        font-size: 0.7em;
+        text-align: center;
+        bottom:0;
+    }
+
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+      width: 100%;
+      /* padding: 35px 6%; */
+      background-color: #228B22;
+      z-index: 999;
+      position: fixed;
+      top: 0;
+      box-shadow: 0px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .topnav a {
+      float: left;
+      position: relative;
+      left: 850px;
+      color: #f2f2f2;
+      text-align: center;
+      /* padding: 0 1em; */
+      padding: 35px 16px;
+      text-decoration: none;
+      letter-spacing: 3px;
+      font-size: 20px;
+    }
+
+    .topnav a:hover {
+      background-color: #1a571a;
+      color: white;
+    }
+
+    .topnav a.active {
+      background-color: #ecc011;
+      color: black;
+    }
+
+    #logo-section {
+      /* max-width: 1100px; */
+      width: 100%;
+      /* padding: 0px 5%; */
+      margin: auto;
+      background: #228B22;
+      overflow-x: hidden;
+    }
+
+    #soto {
+      position: relative;
+      width: 158px;
+      height: auto;
+      /* float: left; */
+      margin-top: 0px;
+      visibility: hidden;
+    }
+
+    #lele {
+      position: relative;
+      width: 200px;
+      height: auto;
+      /* float: left; */
+      margin-top: 0px;
+      visibility: hidden;
+    }
+
+    #ayam {
+      position: relative;
+      width: 200px;
+      height: auto;
+      /* float: left; */
+      margin-top: 0px;
+      visibility: hidden;
+    }
+
+    #sate {
+      position: relative;
+      width: 200px;
+      height: auto;
+      /* float: left; */
+      margin-top: 0px;
+      padding-top: 43px;
+      visibility: hidden;
+    }
+
+    .shadow {
+      -webkit-filter: drop-shadow(5px 5px 5px #222);
+      filter: drop-shadow(5px 5px 5px #222);
+    }
+
+    #intro .animation-logo {
+      padding: 20px 0px 40px 0px;
+      overflow: hidden;
+      background-color: #F5F5F5;
+      /* #006400 */
+    }
+
+    #intro-scroll {
+      width: 100%;
+      position: absolute;
+      bottom: 0px;
+      text-align: center;
+    }
+
+    #intro-scroll p {
+      font-size: 20px;
+      color: #bbb8b8;
+    }
+    
+    #logo {
+      display: block;
+      height: 50%;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 100px;
+      background-size: contain;
+      /* background-color: #fe5652; */
+      border-radius: 24px;
+      visibility: hidden;
+    }
+
+    #food-section {
+      background-color: #FFFFFF;
+      padding: 80px 0px;
+    }
+
+    #food-section h1 {
+      width: 100%;
+      text-align: center;
+      line-height: 2em;
+      font-family: southDjakartaFont;
+    }
+
+    #about-section {
+      background-color: #FFFFFF;
+      padding: 80px 0px;
+    }
+
+    #about-section h1 {
+      width: 100%;
+      text-align: left;
+      line-height: 2em;
+      font-family: southDjakartaFont;
+      font-size: 40px;
+    }
+
+    #contact-section {
+      background-color: #FFFFFF;
+      padding: 80px 0px;
+    }
+
+    #contact-section h1 {
+      width: 100%;
+      text-align: center;
+      line-height: 2em;
+      font-family: southDjakartaFont;
+    }
+
+    h1 {
+      font-family: 'NovecentowideLightBold', 'Source Sans Pro', sans-serif;
+      font-weight: 200;
+      font-size: 46px;
+      color: #444444;
+      line-height: 45px;
+      letter-spacing: 0px;
+    }
+
+    .card-content h2 {
+      font-family: gilaFont;
+      font-size: 18px;
+      color: #444444;
+      line-height: 45px;
+      letter-spacing: 0px;
+      margin-top: 0;
+      margin-bottom: .5em;
+      font-weight: bold;
+    }
+
+    .food-container {
+      max-width: 1000px;
+      width: 95%;
+      padding: 0px 5%;
+      margin: auto;
+    }
+
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 23%;
+      padding: 0 10px;
+    }
+
+    /* Remove extra left and right margins, due to padding */
+    .row {margin: 0 -5px;}
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+
+    .card:hover {
+      position: relative;
+      top: -30px;
+    }
+
+    button {
+      background-color: #f0e9e9fb;
+      border: none;
+      border-radius: 5px;
+      color: #706a6a;
+      padding: 5px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-family: Helvetica !important;
+      font-size: 10px !important;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #b1aaaafb;
+      color: #fff;
+    }
+
+    .modalSoto {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: hidden; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modalLele {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: hidden; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modalAyam {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: hidden; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modalSate {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: hidden; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content-soto {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      /* border: 2px solid #ecc011; */
+      border-radius: 15px;
+      width: 60%; /* Could be more or less, depending on screen size */
+      height: 70%;
+      position: relative;
+      bottom: 100px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    .modal-content-lele {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      /* border: 2px solid #ecc011; */
+      border-radius: 15px;
+      width: 60%; /* Could be more or less, depending on screen size */
+      height: 70%;
+      position: relative;
+      bottom: 100px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    .modal-content-ayam {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      /* border: 2px solid #ecc011; */
+      border-radius: 15px;
+      width: 60%; /* Could be more or less, depending on screen size */
+      height: 70%;
+      position: relative;
+      bottom: 100px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    .modal-content-sate {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      /* border: 2px solid #ecc011; */
+      border-radius: 15px;
+      width: 60%; /* Could be more or less, depending on screen size */
+      height: 70%;
+      position: relative;
+      bottom: 100px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0} 
+      to {top:-100px; opacity:1}
+    }
+
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:-100px; opacity:1}
+    }
+
+    .modal-container-soto {
+      max-width: 1000px;
+      width: 90%;
+      padding: 0px 5%;
+      margin: auto;
+    }
+
+    .modal-container-lele {
+      max-width: 1000px;
+      width: 90%;
+      padding: 0px 5%;
+      margin: auto;
+    }
+
+    .modal-container-ayam {
+      max-width: 1000px;
+      width: 90%;
+      padding: 0px 5%;
+      margin: auto;
+    }
+
+    .modal-container-sate {
+      max-width: 1000px;
+      width: 90%;
+      padding: 0px 5%;
+      margin: auto;
+    }
+
+    #sotomodal {
+      width: 50%;
+      height: auto;
+      float: left;
+      margin-top: 0px;
+      position: relative;
+      top: 10px;
+    }
+
+    .soto-desc {
+      width: 45%;
+      float: right;
+      padding-top: 10%;
+      text-align: justify;
+      font-size: 25px;
+
+    }
+
+    .soto-desc h2 {
+      font-family: gilaFont, sans-serif;
+      color: #444444;
+      line-height: 45px;
+      letter-spacing: 0px;
+      font-size: 30px;
+    }
+
+    #lelemodal {
+      width: 50%;
+      height: auto;
+      float: left;
+      margin-top: 0px;
+      position: relative;
+      top: 30px;
+    }
+
+    .lele-desc {
+      width: 45%;
+      float: right;
+      padding-top: 10%;
+      text-align: justify;
+      font-size: 25px;
+
+    }
+
+    .lele-desc h2 {
+      font-family: gilaFont, sans-serif;
+      color: #444444;
+      line-height: 45px;
+      letter-spacing: 0px;
+      font-size: 30px;
+    }
+
+    #ayammodal {
+      width: 50%;
+      height: auto;
+      float: left;
+      margin-top: 0px;
+      position: relative;
+      top: 20px;
+    }
+
+    .ayam-desc {
+      width: 45%;
+      float: right;
+      padding-top: 10%;
+      text-align: justify;
+      font-size: 25px;
+
+    }
+
+    .ayam-desc h2 {
+      font-family: gilaFont, sans-serif;
+      color: #444444;
+      line-height: 45px;
+      letter-spacing: 0px;
+      font-size: 30px;
+    }
+
+    #satemodal {
+      width: 50%;
+      height: 400px;
+      float: left;
+      margin-top: 0px;
+      position: relative;
+      top: 10px;
+      right: 20px;
+    }
+
+    .sate-desc {
+      width: 45%;
+      float: right;
+      padding-top: 5%;
+      text-align: justify;
+      font-size: 25px;
+
+    }
+
+    .sate-desc h2 {
+      font-family: gilaFont, sans-serif;
+      color: #444444;
+      line-height: 45px;
+      letter-spacing: 0px;
+      font-size: 30px;
+    }
+
+    h4 {
+      color: #B22222;
+    }
+
+    .closeSoto {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .closeSoto:hover,
+    .closeSoto:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .closeLele {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .closeLele:hover,
+    .closeLele:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .closeAyam {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .closeAyam:hover,
+    .closeAyam:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .closeSate {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .closeSate:hover,
+    .closeSate:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #gototop {
+      display: none;
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      left: 1200px;
+      bottom: 30px;
+      cursor: pointer;
+    }
+
+    .mb-wrap {
+      width: 300px;
+      margin: 20px auto;
+      padding: 20px;
+      position: relative;	
+    }
+
+    .mb-wrap p{
+      margin: 0;
+      padding: 0;
+    }
+
+    .mb-wrap blockquote {
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .mb-wrap cite {
+      font-style: normal;
+    }
+
+    .mb-style-3 {
+      width: 500px;
+    }
+
+    .mb-style-3 blockquote{
+      background: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 
+        inset 0 2px 0 #ecc011, 
+        -5px -4px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .mb-style-3 blockquote:after, 
+    .mb-style-3 blockquote:before  {
+      top: 100%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .mb-style-3 blockquote:after  {
+      border-top-color: #ffffff;
+      border-width: 10px;
+      left: 65%;
+      margin-left: -10px;
+    }
+
+    .mb-style-3 blockquote:before {
+      border-top-color: rgba(0,0,0,0.01);
+      border-width: 11px;
+      left: 65%;
+      margin-left: -11px;
+    }
+
+    .mb-style-3 blockquote p {
+      font-size: 24px !important;
+      color: #a09c9c;
+      font-weight: 400;
+      line-height: 40px;
+      font-style: italic;
+      text-indent: 100px;
+      position: relative;
+    }
+
+    .mb-style-3 blockquote p:before{
+      content: '\201C';
+      font-family: serif;
+      font-weight: 700;
+      position: absolute;
+      font-size: 175px;
+      top: 0px;
+      left: -105px;
+      color: #ecc011;
+      text-shadow: 7px 14px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mb-style-3 .mb-attribution {
+      text-align: right;
+      padding: 20px 100px 20px 20px;
+      position: relative;
+    }
+
+    .mb-style-3 .mb-thumb {
+      display: block;
+      width: 70px;
+      height: 70px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+      background: url('/KedaiRizkiBarokah/img/user.png') no-repeat center center;
+      background-size: 70px 70px;
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      box-shadow: 
+        inset 1px 1px 4px rgba(0,0,0,0.5),
+        0 2px 3px rgba(0,0,0,0.6);
+    }
+
+    .about1 p {
+      width: 50%;
+      float: left;
+      text-align: justify;
+      line-height: 1.50;
+      font-size: 25px;
+      margin-top: 6px;
+    }
+
+    #kedai {
+      visibility: hidden;
+      width: 45%;
+      float: right;
+    }
+
+    .about2 h1 {
+      width: 45% !important;
+      float: right !important;
+    }
+
+    .about2 p {
+      width: 45%;
+      float: right;
+      text-align: justify;
+      line-height: 1.50;
+      font-size: 25px;
+      margin-top: 11px;
+    }
+
+    #sate2 {
+      visibility: hidden;
+      width: 50%;
+      float: left;
+      height: 500px;
+      margin-top: 40px;
+    }
+
+    .author {
+      visibility: hidden;
+      width: 90%;
+      float: right;
+      margin-top: 50px;
+    }
+
+    .card img {
+      display: block;
+      border: 0;
+      border-radius: 15px 15px 0 0;
+      width: 100%;
+      height: 250px;
+    }
+
+
+    .card {
+      background: white;
+      margin-bottom: 2em;	
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      position: relative;
+      top: 0;
+      transition: top ease 0.5s;
+    }
+
+    .card a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
+    }
+
+    .card-content {
+      padding: 1.4em;
+    }
+
+    .card-content h4 {
+      position: relative;
+      bottom: 41px;
+      left: 110px;
+      color: #ffae00;
+    }
+
+    /* Flexbox stuff */
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .card {
+      flex: 0 1 24%;
+    }
+
+    #maps {
+      height: 400px;
+      width: 45%;
+      float: left;
+      border-radius: 15px;
+    }
+
+    .location p {
+      width: 50%;
+      float: right;
+      text-align: justify;
+      line-height: 1.50;
+      font-size: 25px;
+      margin-top: 6px;
+    }
+
+    .location #marker {
+      width: 200px;
+      position: relative;
+      left: 300px;
+      bottom: 0;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="topnav">
+      <img src="/KedaiRizkiBarokah/img/logo.png" alt="logo" class="logo-nav">
+      <a class="menu" href="#intro" id="home">Home</a>
+      <a class="menu" href="#food-section" id="menu">Menu</a>
+      <a class="menu" href="#about-section" id="about">About Us</a>
+      <a class="menu" href="#contact" id="contact">Contact</a>
+    </div>
+  <!-- </header> -->
+  <section id="intro">
+    <div class="animation-logo">
+      <img src="/KedaiRizkiBarokah/img/logo_black2.png" id="logo" class="animate fadeIn"></div>
+    </div>
+    <div id="intro-scroll">
+      <p class="pulse">Scroll down</p>
+    </div>
+  </section>
+  <section id="food-section">
+    <h1>Explore Our Menu</h1>
+    <div class="food-container">
+      <div class="row">
+        <div class="cards">     
+          <div class="card">
+            <img src="/KedaiRizkiBarokah/img/sotoBG.jpeg" alt="Soto Mie Bogor">
+            <div class="card-content">
+              <h2>Soto Mie Bogor</h2>
+              <div>
+                <button id="btnSoto">MORE</button>
+                <h4>Rp 10.000</h4>
+              </div>
+            </div><!-- .card-content -->
+          </div><!-- .card -->
+          <div class="card">
+            <img src="/KedaiRizkiBarokah/img/leleBG.jpeg" alt="Lele">
+            <div class="card-content">
+              <h2>Lele Geprek</h2>
+              <div>
+                <button id="btnLele">MORE</button>
+              </div>
+              <h4>Rp 11.000</h4>
+            </div><!-- .card-content -->
+          </div><!-- .card -->
+          <div class="card">
+            <img src="/KedaiRizkiBarokah/img/ayamBG.jpeg" alt="Ayam">
+            <div class="card-content">
+              <h2>Ayam Geprek</h2>
+              <div>
+                <button id="btnAyam">MORE</button>
+              </div>
+              <h4>Rp 12.000</h4>
+            </div><!-- .card-content -->
+          </div><!-- .card -->
+          <div class="card">
+            <img src="/KedaiRizkiBarokah/img/sateBG.jpeg" alt="Sate">
+            <div class="card-content">
+              <h2>Sate Maranggi</h2>
+              <div>
+                <button id="btnSate">MORE</button>
+              </div>
+              <h4>Rp 30.000</h4>
+            </div><!-- .card-content -->
+          </div><!-- .card -->
+        </div><!-- .cards -->
+      </div>
+    </div>
+    <!-- The Modal -->
+    <div class="modalSoto" id="modalSoto">
+      <!-- Modal Content -->
+      <div class="modal-content-soto">
+        <div class="modal-container-soto">
+          <span class="closeSoto">&times;</span>
+          <img src="/KedaiRizkiBarokah/img/soto.png" alt="soto" id="sotomodal" class="shadow expandUp">
+          <div class="soto-desc">
+            <h2>Soto Mie Bogor</h2>
+            <p>The delicious Soto Mie from Bogor with a mixture of real meat, risol, and noodles will make it taste more delicious and delicious when eaten in cold or rainy weather</p>
+            <h4>Rp. 10.000</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modalLele" id="modalLele">
+      <!-- Modal Content -->
+      <div class="modal-content-lele">
+        <div class="modal-container-lele">
+          <span class="closeLele">&times;</span>
+          <img src="/KedaiRizkiBarokah/img/lele.png" alt="lele" id="lelemodal" class="shadow expandUp">
+          <div class="lele-desc">
+            <h2>Lele Geprek</h2>
+            <p>Geprek fried catfish is tasty with a mixture of spicy chilies sprinkled on the catfish so that it adds to the delicacy of eating it</p>
+            <h4>Rp. 11.000</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modalAyam" id="modalAyam">
+      <!-- Modal Content -->
+      <div class="modal-content-ayam">
+        <div class="modal-container-ayam">
+          <span class="closeAyam">&times;</span>
+          <img src="/KedaiRizkiBarokah/img/ayam.png" alt="ayam" id="ayammodal" class="shadow expandUp">
+          <div class="ayam-desc">
+            <h2>Ayam Geprek</h2>
+            <p>The same is the case with geprek catfish, savory fried chicken geprek with a mixture of spicy chilies sprinkled on the chicken for chicken lovers</p>
+            <h4>Rp. 12.000</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modalSate" id="modalSate">
+      <!-- Modal Content -->
+      <div class="modal-content-sate">
+        <div class="modal-container-sate">
+          <span class="closeSate">&times;</span>
+          <img src="/KedaiRizkiBarokah/img/sate_maranggi.png" alt="sate" id="satemodal" class="shadow expandUp">
+          <div class="sate-desc">
+            <h2>Sate Maranggi</h2>
+            <p>The typical Purwakarta beef satay with the oncom sauce variant and soy sauce as a complement to this maranggi satay makes it taste even more delicious when eaten</p>
+            <h4>Rp. 30.000 / Porsi</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="about-section">
+    <div class="food-container">
+      <h1>Why Must Kedai Rizki Barokah ?</h1>
+      <div class="about1">
+        <p>Kedai Rizki Barokah is a simple restaurant that has been established since 2020. It has a wide variety of traditional food dishes and its convenience makes this restaurant unique compared to the surrounding restaurants. For its location, this restaurant is in a housing estate.</p>
+        <img src="/KedaiRizkiBarokah/img/kedai.jpg" alt="kedai" id="kedai">
+      </div>
+      <div class="about2">
+        <img src="/KedaiRizkiBarokah/img/sate2.jpg" alt="sate2" id="sate2">
+        <h1>What We Want ?</h1>
+        <p>We want to make people feel the traditional food we serve as if they feel the food in their own hometown. and of course at a relatively cheap price.</p>
+        <p>And make the cuisine in our restaurant become a dish that is liked by many people so that this restaurant becomes the restaurant that most people are waiting for.</p>
+      </div>
+      <div class="author">
+        <div class="mb-wrap mb-style-3">
+          <div class="mb-thumb"></div>
+          <blockquote>
+            <p>As the name implies, Kedai Rizki Barokah. which this restaurant hopes will make sustenance and blessings for everyone</p>
+          </blockquote>
+          <div class="mb-attribution">
+            <p class="mb-author">Pachradi Tadjoedin</p>
+            <p style="color: #a09c9c;">Owner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact-section">
+    <h1>Let's Find Us </h1>
+    <div class="food-container">
+      <div class="location">
+        <div id="maps"></div>
+        <p><b>Address : </b>Perumahan Bojong Depok Baru I, Blk. OV No.19, Kedung Waringin, Bojong Gede, Bogor, West Java</p>
+        <p><b>Operational Hour : </b>Everyday 10.00 - 21.00</p>
+        <p style="position:absolute;right:0;z-index:100;"><b>Telephone : </b>(+62)857-7314-4753</p>
+        <img src="/KedaiRizkiBarokah/img/location.png" alt="marker" id="marker">
+      </div>
+    </div>
+  </section>
+  <div onclick="topFunction()" id="gototop" title="Jump To Top"><img src="/KedaiRizkiBarokah/img/arrowup.svg"></div>
+    <!-- <div class="footer">
+      <p class="copyright">© Kedai Rizki Barokah 2020</p>
+    </div> -->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script type="text/javascript">
+
+  // First Load browser
+  $(document).ready(function(){
+      $('html').animate({scrollTop:0}, 1);
+      $('body').animate({scrollTop:0}, 1);
+      // $("#home").addClass("active");
+  });
+
+  // Navbar
+  $('.menu').click(function() {
+    if (this.id === 'home') {
+      $(".menu:not(#home)").removeClass("active");
+      $("#home").addClass("active");
+    }
+    else if (this.id === 'menu') {
+      $(".menu:not(#menu)").removeClass("active");
+      $("#menu").addClass("active");
+    }
+    else if (this.id === 'about') {
+      $(".menu:not(#about)").removeClass("active");
+      $("#about").addClass("active");
+    }
+    else if (this.id === 'contact') {
+      $(".menu:not(#contact)").removeClass("active");
+      $("#contact").addClass("active");
+    }
+  });
+
+  // Food Animation
+  $(window).scroll(function() {
+			$('#soto').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("expandUp");
+				}
+			});
+
+      $('#lele').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("expandUp");
+				}
+			});
+
+      $('#ayam').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("expandUp");
+				}
+			});
+
+      $('#sate').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("expandUp");
+				}
+			});
+
+      // about page
+      $('#kedai').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("slideLeft");
+				}
+			});
+
+      $('#sate2').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("slideRight");
+				}
+			});
+
+      $('.author').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("slideExpandUp");
+				}
+			});
+  });
+
+  // navigation smooth
+  $('a').click(function(){
+      $('html, body').animate({
+          scrollTop: $( $(this).attr('href') ).offset().top
+      }, 500);  
+      return false;
+  });
+
+  // scroll page with changes active navbar
+  $(document).ready(function () {
+    $(document).on("scroll", onScroll);
+
+    //smoothscroll
+    $('a[href^="#"]').on('click', function (e) {
+      e.preventDefault();
+      $(document).off("scroll");
+
+      $('a').each(function () {
+        $(this).removeClass('active');
+      })
+        $(this).addClass('active');
+
+      var target = this.hash,
+      menu = target;
+      $target = $(target);
+      $('html, body').stop().animate({
+        'scrollTop': $target.offset().top+2
+      }, 500, 'swing', function () {
+        window.location.hash = target;
+        $(document).on("scroll", onScroll);
+      });
+    });
+  });
+
+  function onScroll(event){
+    var scrollPos = $(document).scrollTop();
+    $('.topnav a').each(function () {
+      var currLink = $(this);
+      var refElement = $(currLink.attr("href"));
+      if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+        $('#topnav a').removeClass("active");
+        currLink.addClass("active");
+      }
+      else{
+        currLink.removeClass("active");
+      }
+    });
+  }
+
+
+// ============================ MODAL ==================================================== //
+  var modalsoto = document.getElementById("modalSoto");
+  var btnSoto = document.getElementById("btnSoto");
+  var spanSoto = document.getElementsByClassName("closeSoto")[0];
+
+  // When the user clicks on the button, open the modal
+  btnSoto.onclick = function() {
+    modalsoto.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  spanSoto.onclick = function() {
+    modalsoto.style.display = "none";
+  }
+
+
+  var modallele = document.getElementById("modalLele");
+  var btnLele = document.getElementById("btnLele");
+  var spanLele = document.getElementsByClassName("closeLele")[0];
+
+  // When the user clicks on the button, open the modal
+  btnLele.onclick = function() {
+    modallele.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  spanLele.onclick = function() {
+    modallele.style.display = "none";
+  }
+
+  var modalayam = document.getElementById("modalAyam");
+  var btnAyam = document.getElementById("btnAyam");
+  var spanAyam = document.getElementsByClassName("closeAyam")[0];
+
+  // When the user clicks on the button, open the modal
+  btnAyam.onclick = function() {
+    modalayam.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  spanAyam.onclick = function() {
+    modalayam.style.display = "none";
+  }
+
+  var modalsate = document.getElementById("modalSate");
+  var btnSate = document.getElementById("btnSate");
+  var spanSate = document.getElementsByClassName("closeSate")[0];
+
+  // When the user clicks on the button, open the modal
+  btnSate.onclick = function() {
+    modalsate.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  spanSate.onclick = function() {
+    modalsate.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modalsoto) {
+      modalsoto.style.display = "none";
+    }
+    else if (event.target == modallele) {
+      modallele.style.display = "none";
+    }
+    else if (event.target == modalayam) {
+      modalayam.style.display = "none";
+    }
+    else if (event.target == modalsate) {
+      modalsate.style.display = "none";
+    }
+  }
+
+  // Button Go to top
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+          document.getElementById("gototop").style.display = "block";
+      } else {
+          document.getElementById("gototop").style.display = "none";
+      }
+    
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+  
+      $('html, body').animate({scrollTop:0}, 'slow');
+  }
+
+  // Initialize and add the map
+  var maps = L.map('maps').setView([-6.4958256, 106.8009517], 10);
+  var marker = L.marker([-6.4958256, 106.8009517]).addTo(maps);
+  marker.bindPopup("<b>Kedai Rizki Barokah</b><br>I am here.").openPopup();
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 20,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiZHpha2l0YWp1ZGluIiwiYSI6ImNrZ3N2N3hzcDE4eDgyc2w4YXV3bnVmN3EifQ.9lsf5hwuWl5bbgVuWSzsAA'
+  }).addTo(maps);
+    
+
+
+</script>
+</body>
+</html>
