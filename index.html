@@ -886,6 +886,7 @@
       position: relative;
       left: 300px;
       bottom: 0;
+      visibility: hidden;
     }
 
   </style>
@@ -896,7 +897,7 @@
       <a class="menu" href="#intro" id="home">Home</a>
       <a class="menu" href="#food-section" id="menu">Menu</a>
       <a class="menu" href="#about-section" id="about">About Us</a>
-      <a class="menu" href="#contact" id="contact">Contact</a>
+      <a class="menu" href="#contact-section" id="contact">Contact</a>
     </div>
   <!-- </header> -->
   <section id="intro">
@@ -1152,6 +1153,15 @@
 			var topOfWindow = $(window).scrollTop();
 				if (imagePos < topOfWindow+400) {
 					$(this).addClass("slideExpandUp");
+				}
+			});
+
+      $('#marker').each(function(){
+			var imagePos = $(this).offset().top;
+			
+			var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+400) {
+					$(this).addClass("hatch");
 				}
 			});
   });
