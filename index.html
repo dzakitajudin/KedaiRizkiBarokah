@@ -92,25 +92,6 @@
       width: 100%;
     }
 
-    .footer {
-      background-color: #1f1f20;
-      clear: both;
-      position: relative;
-      height: 150px;
-      margin-top: -150px;
-      top: 150px;
-    }
-
-    p.copyright {
-        position: absolute;
-        width: 100%;
-        color: #fff;
-        line-height: 40px;
-        font-size: 0.7em;
-        text-align: center;
-        bottom:0;
-    }
-
     .topnav {
       overflow: hidden;
       background-color: #333;
@@ -968,6 +949,32 @@
         margin-top: 0;
       }
     }
+    
+    #footer-section {
+      background-color: #25282b;
+      padding: 150px 0;
+      margin-top: 100px;
+    }
+
+    .footer-container {
+      padding: 0 50px;
+    }
+
+    #footer-section hr {
+      position: relative;
+      top: 125px;
+      /* width: 95%; */
+      border-top: 1px solid #7a7575;
+    }
+
+    .copyright {
+      font-family: montserrat-semibold;
+      position: relative;
+      top: 130px;
+      /* left: 30px; */
+      color: #f2f2f2;
+      font-size: 13px;
+    }
 
   </style>
 </head>
@@ -1159,10 +1166,14 @@
       </div>
     </div>
   </section>
+  <section id="footer-section">
+    <div class="footer-container">
+      <hr> <!-- horizontal line -->
+      <p class="copyright">© Copyright 2020 Kedai Rizki Barokah. All rights reserved</p>
+    </div>
+  </section>
   <div onclick="topFunction()" id="gototop" title="Jump To Top"><img src="/KedaiRizkiBarokah/img/arrowup.svg"></div>
-    <!-- <div class="footer">
-      <p class="copyright">© Kedai Rizki Barokah 2020</p>
-    </div> -->
+    
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
